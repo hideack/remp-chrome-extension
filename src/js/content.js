@@ -1,4 +1,4 @@
-parseYoutubeLinks();
+parse();
 
 function parse()
 {
