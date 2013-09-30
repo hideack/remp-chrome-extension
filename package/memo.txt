@@ -1,0 +1,2 @@
+(Placement *.crx and *.zip files here after execute a rake instruction.)
+
