@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" dir="ltr">
     <head>
+        <meta charset="UTF-8">
+        <script src="js/jquery-2.0.3.min.js"></script>
+        <script src="js/underscore-min.js"></script>
         <script src="js/main.js"></script>
     </head>
     <body>
-        REMP Chrome extension.
+        <div id="contents_template" style="display:none;">
+            <%= videos.length %>個の動画が見つかりました。<br/>
+        </div>
+        <div id="contents"></div>
     </body>
 </html>
