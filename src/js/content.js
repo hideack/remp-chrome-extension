@@ -18,23 +18,17 @@ function parseYoutubeLinks()
             var match = url.match(regExp);
 
             if (match && match[7].length==11){
-                var video = {};
-                video.videoId = match[7];
-                video.rawUrl = url;
-
-                ids.push(video);
+                ids.push(match[7]);
             }
         }
 
         return ids;
     }
 
-    videos = parser('a', 'href');
+    linkVideos = parser('a', 'href');
     iframeVideos = parser('iframe', 'src');
 
-    for (var i=0; i<iframeVideos.length; i++) {
-        videos.push(iframeVideos[i]);
-    }
+    videos = _.union(linkVideos, iframeVideos);
 
     return videos;
 }
