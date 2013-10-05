@@ -8,8 +8,6 @@ function parse()
 
 function parseYoutubeLinks()
 {
-    console.log("--- content.js ---");
-
     var parser = function(target, property) {
         $frames = $(target);
         var ids = [];
@@ -38,7 +36,6 @@ function parseYoutubeLinks()
         videos.push(iframeVideos[i]);
     }
 
-    console.log(videos);
     return videos;
 }
 
