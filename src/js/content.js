@@ -42,4 +42,8 @@ function parseYoutubeLinks()
     return videos;
 }
 
-
+chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+    if(request.message === "parse") {
+        send();
+    }
+});
