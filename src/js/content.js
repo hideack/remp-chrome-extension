@@ -3,7 +3,12 @@ parse();
 function parse()
 {
     var videos = parseYoutubeLinks();
-    chrome.extension.sendRequest(videos);
+    var parseProperty = {
+        videos: videos,
+        title: document.title
+    };
+
+    chrome.extension.sendRequest(parseProperty);
 }
 
 function parseYoutubeLinks()
