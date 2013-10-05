@@ -44,6 +44,6 @@ function parseYoutubeLinks()
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     if(request.message === "parse") {
-        send();
+        parse();
     }
 });
