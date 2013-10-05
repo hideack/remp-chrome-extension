@@ -1,6 +1,8 @@
 chrome.extension.onRequest.addListener(
-    function(request, sender, sendResponse) {
-        window.videos = request;
+    function(request, sender, sendResponse) 
+    {
+        window.videos = request.videos;
+        window.pageTitle  = request.title;
         sendResponse({});
     }
 );
