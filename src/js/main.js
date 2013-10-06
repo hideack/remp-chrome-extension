@@ -23,11 +23,12 @@ var RempExtension = (function(){
                 _login = false;
             })
             .always(function(){
-                var template = $('#contents_template')[0].innerText;
-                var compiled = _.template(template);
-                var params = {videos: _videos, title: _pageTitle, plugin: _plugin, login: _login};
-                console.log(params);
-                $("#contents").html(compiled(params));
+                $.get("/template/popup_content.html", function(template){
+                    var compiled = _.template(template);
+                    var params = {videos: _videos, title: _pageTitle, plugin: _plugin, login: _login};
+                    console.log(params);
+                    $("#contents").html(compiled(params));
+                });
             });
         },
         link: function(url, selected) {
