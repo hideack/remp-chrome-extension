@@ -1,0 +1,16 @@
+<% if(!login) { %>
+<div id="nologin">
+  REMPにログインされていません。<br/>
+  <a href="http://www.remp.jp/hello?ref=chromeext" target="_blank">こちら</a>からREMPにログインしてください。<br/>
+</div>
+
+<% } else if(videos.length == 0 ){ %>
+ページ内に動画は見つかりませんでした。<br/>
+
+<% } else { %>
+<%- videos.length %>個の動画が見つかりました。<br/>
+<%- title %>
+<%= plugin %>
+
+<% } %>
+
