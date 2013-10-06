@@ -5,7 +5,6 @@ var RempExtension = (function(){
     var _plugin    = '';     // プラグイン用
     return {
         init: function(){
-            console.log("Initialize (main.js)");
             _videos = chrome.extension.getBackgroundPage().videos;
             _pageTitle = chrome.extension.getBackgroundPage().pageTitle;
 
@@ -26,7 +25,6 @@ var RempExtension = (function(){
                 $.get("/template/popup_content.html", function(template){
                     var compiled = _.template(template);
                     var params = {videos: _videos, title: _pageTitle, plugin: _plugin, login: _login};
-                    console.log(params);
                     $("#contents").html(compiled(params));
                 });
             });
