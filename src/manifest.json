@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name":"REMP Chrome extension",
-  "description":"REMP Chrome extension",
+  "description":"ブラウザに表示中のページ中にあるYouTube動画をREMPにプレイリストとして取り込むChrome拡張です。REMPのユーザ登録が必要です。",
   "version": "0.0.1",
   "permissions": ["tabs" ,"http://*/"],
   "background": {
