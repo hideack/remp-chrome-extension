@@ -8,7 +8,7 @@ var RempExtension = (function(){
             _videos = chrome.extension.getBackgroundPage().videos;
             _pageTitle = chrome.extension.getBackgroundPage().pageTitle;
 
-            if(_videos.length > 0) {
+            if (_videos.length > 0) {
                 _videoIds = _videos.join('|');
             }
 
@@ -23,7 +23,12 @@ var RempExtension = (function(){
             .always(function(){
                 $.get("/template/popup_content.html", function(template){
                     var compiled = _.template(template);
-                    var params = {videos: _videos, title: _pageTitle, videoIds: _videoIds, login: _login};
+                    var params = {
+                        videos: _videos,
+                        title: _pageTitle,
+                        videoIds: _videoIds,
+                        login: _login
+                    };
                     $("#contents").html(compiled(params));
                 });
             });

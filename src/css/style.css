@@ -1,0 +1,47 @@
+body {
+  width: 480px;
+  background-color: #222;
+  padding: 0 4px 0 4px;
+  font-size: 12px;
+  color: #111;
+}
+#contents h1 {
+  color: #ccc;
+  font-size: 12px;
+  font-weight: bold;
+}
+#contents p {
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 3px;
+  line-height: 32px;
+}
+#contents p#main {
+  line-height: 48px;
+}
+#contents img {
+  float: left;
+  margin-right: 10px;
+}
+#contents iframe {
+  float: right;
+}
+
+a:link,
+a:hover,
+a:visited {
+  color: #a60100;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:focus {
+  outline: none;
+}
+
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
