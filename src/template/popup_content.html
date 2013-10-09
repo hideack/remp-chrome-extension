@@ -1,15 +1,26 @@
-<% if(!login) { %>
-<div id="nologin">
-  REMPにログインされていません。<br/>
-  <a href="http://www.remp.jp/hello?ref=chromeext" target="_blank">こちら</a>からREMPにログインしてください。<br/>
-</div>
+<% if (!login) { %>
+<p class="clearfix">
+    <img src="img/exclamation.png" alt="error">
+    REMPにログインしていません。<a href="http://www.remp.jp/hello?ref=chromeext" target="_blank">こちら</a>からログインしてください。
+</p>
 
-<% } else if(videos.length == 0 ){ %>
-ページ内に動画は見つかりませんでした。<br/>
+<% } else if (videos.length == 0 ) { %>
+<p class="clearfix">
+    <img src="img/exclamation.png" alt="error">
+    ページ内にYouTubeの動画が見つかりませんでした。
+</p>
+
+<% } else if(!login){ %>
+REMPにログインされていません。<br/>
+<a href="http://www.remp.jp/hello?ref=chromeext" target="_blank">こちら</a>からREMPにログインしてください。<br/>
 
 <% } else { %>
-<%- videos.length %>個の動画が見つかりました。<br/>
-<%- title %>
-<iframe style="border:0" width=250px height=50px src='http://www.remp.jp/plugins/appendlibrary/<%- title%>/<%- videoIds%>?label=%e3%81%93%e3%81%ae%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%ae%e5%8b%95%e7%94%bb%e3%82%92%e5%8f%96%e3%82%8a%e8%be%bc%e3%82%80'></iframe>
+
+<h1><%- title %></h1>
+<p id="main" class="clearfix">
+    <img src="img/remp_logo_48.png" alt="remp">
+    <%- videos.length %>件の動画が見つかりました。
+    <iframe style="border:0" width=200px height=40px src='http://www.remp.jp/plugins/appendlibrary/<%- title%>/<%- videoIds%>?label=%e3%81%93%e3%81%ae%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%ae%e5%8b%95%e7%94%bb%e3%82%92%e5%8f%96%e3%82%8a%e8%be%bc%e3%82%80'></iframe>
+</p>
 <% } %>
 

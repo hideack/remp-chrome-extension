@@ -1,7 +1,6 @@
 parse();
 
-function parse()
-{
+function parse() {
     var videos = parseYoutubeLinks();
     var parseProperty = {
         videos: videos,
@@ -11,18 +10,18 @@ function parse()
     chrome.extension.sendRequest(parseProperty);
 }
 
-function parseYoutubeLinks()
-{
+function parseYoutubeLinks() {
+    var linkVideos, iframeVideos, paramVideos, videos;
     var parser = function(target, property) {
-        $frames = $(target);
-        var ids = [];
+        var $frames = $(target);
+        var ids = [], url, match, i;
         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
 
-        for (var i=0; i<$frames.length; i++) {
-            var url = $frames[i][property];
-            var match = url.match(regExp);
+        for (i = 0; i < $frames.length; i++) {
+            url = $frames[i][property];
+            match = url.match(regExp);
 
-            if (match && match[7].length==11){
+            if (match && match[7].length == 11) {
                 ids.push(match[7]);
             }
         }
@@ -32,14 +31,16 @@ function parseYoutubeLinks()
 
     linkVideos = parser('a', 'href');
     iframeVideos = parser('iframe', 'src');
+    paramVideos = parser('param', 'value');
 
-    videos = _.union(linkVideos, iframeVideos);
+    videos = _.union(linkVideos, iframeVideos, paramVideos);
 
     return videos;
 }
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-    if(request.message === "parse") {
+    if (request.message === "parse") {
         parse();
     }
 });
+
