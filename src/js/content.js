@@ -1,10 +1,21 @@
 parse();
 
 function parse() {
+    var title = function() {
+        var windowTitle = document.title;
+
+        if (windowTitle.length > 20) {
+            windowTitle  = windowTitle.substr(0, 20);
+            windowTitle += '...';
+        }
+
+        return windowTitle;
+    };
+
     var videos = parseYoutubeLinks();
     var parseProperty = {
         videos: videos,
-        title: document.title
+        title: title()
     };
 
     chrome.extension.sendRequest(parseProperty);
