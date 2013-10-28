@@ -25,15 +25,22 @@ function parseYoutubeLinks() {
     var linkVideos, iframeVideos, paramVideos, videos;
     var parser = function(target, property) {
         var $frames = $(target);
-        var ids = [], url, match, i;
-        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var ids = [], url, match, i, regExp, matchPoint, matchLength;
+
+        if (target == 'img') {
+            regExp = /^http.*\/\/(i[0-9]?\.ytimg\.com)\/(vi)\/(.*)\/.*\.jpg$/;
+            matchPoint = 3;
+        } else {
+            regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+            matchPoint = 7;
+        }
 
         for (i = 0; i < $frames.length; i++) {
             url = $frames[i][property];
             match = url.match(regExp);
 
-            if (match && match[7].length == 11) {
-                ids.push(match[7]);
+            if (match && match[matchPoint].length == 11) {
+                ids.push(match[matchPoint]);
             }
         }
 
@@ -43,8 +50,9 @@ function parseYoutubeLinks() {
     linkVideos = parser('a', 'href');
     iframeVideos = parser('iframe', 'src');
     paramVideos = parser('param', 'value');
+    thumbnails = parser('img', 'src');
 
-    videos = _.union(linkVideos, iframeVideos, paramVideos);
+    videos = _.union(linkVideos, iframeVideos, paramVideos, thumbnails);
 
     return videos;
 }
