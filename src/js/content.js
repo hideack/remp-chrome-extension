@@ -28,7 +28,7 @@ function parseYoutubeLinks() {
         var ids = [], url, match, i, regExp, matchPoint, matchLength;
 
         if (target == 'img') {
-            regExp = /^http.*\/\/(i\.ytimg\.com)\/(vi)\/(.*)\/.*\.jpg$/;
+            regExp = /^http.*\/\/(i[0-9]?\.ytimg\.com)\/(vi)\/(.*)\/.*\.jpg$/;
             matchPoint = 3;
         } else {
             regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
