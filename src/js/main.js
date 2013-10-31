@@ -1,5 +1,5 @@
 var RempExtension = (function(){
-    var _login     = false;  // REMPへのログイン状態
+    var _login     = false;  // REMPのログイン状態
     var _videos    = null;   // ページ中から見つけられたYouTube動画情報
     var _pageTitle = '';     // ページタイトル
     var _videoIds  = '';     // ページ中動画のVideo IDを連結した文字列
@@ -39,7 +39,7 @@ var RempExtension = (function(){
                 'selected': selected
             });
         }
-    }
+    };
 })();
 
 RempExtension.init();

@@ -22,7 +22,7 @@ function parse() {
 }
 
 function parseYoutubeLinks() {
-    var linkVideos, iframeVideos, paramVideos, thumbnails, videos;
+    var linkVideos, iframeVideos, paramVideos, thumbnails, scriptVideos, videos;
     var parser = function(target, property) {
         var $frames = $(target);
         var ids = [], url, match, i, regExp, matchPoint;
@@ -39,18 +39,18 @@ function parseYoutubeLinks() {
             url = $frames[i][property];
             match = url.match(regExp);
 
-            if (match && match[matchPoint].length == 11) {
+            if (match && match[matchPoint].length === 11) {
                 ids.push(match[matchPoint]);
             }
         }
 
         return ids;
-    }
+    };
 
     var scriptParser = function() {
 
         var $scripts = $('script'),
-            ids = [], match, regExp;
+            ids = [], regExp;
 
         regExp = /^.*http.*\/\/www\.youtube\.com\/v\/(.*?)".*/;
 
@@ -60,7 +60,7 @@ function parseYoutubeLinks() {
             $.each(lines, function() {
                 var line = this.replace(/[\r\n]/g, ''),
                     match = line.match(regExp);
-                if (match && match[1].length == 11) {
+                if (match && match[1].length === 11) {
                     ids.push(match[1]);
                 }
             });
@@ -75,12 +75,18 @@ function parseYoutubeLinks() {
     thumbnails   = parser('img', 'src');
     scriptVideos = scriptParser();
 
-    videos = _.union(linkVideos, iframeVideos, paramVideos, thumbnails, scriptVideos);
+    videos = _.union(
+        linkVideos,
+        iframeVideos,
+        paramVideos,
+        thumbnails,
+        scriptVideos
+    );
 
     return videos;
 }
 
-chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+chrome.extension.onRequest.addListener(function(request) {
     if (request.message === "parse") {
         parse();
     }

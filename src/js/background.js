@@ -7,7 +7,7 @@ chrome.extension.onRequest.addListener(
         var videoNum = window.videos.length;
 
         var colorPattern;
-        if (videoNum == 0) {
+        if (videoNum === 0) {
             colorPattern = [128, 128, 128, 255];
         } else {
             colorPattern = [255, 0, 0, 255];
@@ -24,7 +24,7 @@ chrome.extension.onRequest.addListener(
     }
 );
 
-chrome.tabs.onSelectionChanged.addListener(function(tabId, opt) {
+chrome.tabs.onSelectionChanged.addListener(function(tabId) {
 
     var request = {};
     request.message = "parse";
