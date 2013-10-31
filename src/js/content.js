@@ -50,19 +50,18 @@ function parseYoutubeLinks() {
     var scriptParser = function() {
 
         var $scripts = $('script'),
-            ids = [], regExp, matchPoint;
+            ids = [], match, regExp;
 
-        regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*)".*/;
-        matchPoint = 7;
+        regExp = /^.*http.*\/\/www\.youtube\.com\/v\/(.*?)".*/;
 
         $scripts.each(function() {
             var script = $(this).text(),
                 lines = script.split('},');
-
             $.each(lines, function() {
-                var match = this.match(regExp);
-                if (match && match[matchPoint].length == 11) {
-                    ids.push(match[matchPoint]);
+                var line = this.replace(/[\r\n]/g, ''),
+                    match = line.match(regExp);
+                if (match && match[1].length == 11) {
+                    ids.push(match[1]);
                 }
             });
         });
