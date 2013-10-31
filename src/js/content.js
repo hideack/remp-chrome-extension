@@ -22,10 +22,10 @@ function parse() {
 }
 
 function parseYoutubeLinks() {
-    var linkVideos, iframeVideos, paramVideos, videos;
+    var linkVideos, iframeVideos, paramVideos, thumbnails, videos;
     var parser = function(target, property) {
         var $frames = $(target);
-        var ids = [], url, match, i, regExp, matchPoint, matchLength;
+        var ids = [], url, match, i, regExp, matchPoint;
 
         if (target == 'img') {
             regExp = /^http.*\/\/(i[0-9]?\.ytimg\.com)\/(vi)\/(.*)\/.*\.jpg$/;
@@ -47,12 +47,36 @@ function parseYoutubeLinks() {
         return ids;
     }
 
-    linkVideos = parser('a', 'href');
-    iframeVideos = parser('iframe', 'src');
-    paramVideos = parser('param', 'value');
-    thumbnails = parser('img', 'src');
+    var scriptParser = function() {
 
-    videos = _.union(linkVideos, iframeVideos, paramVideos, thumbnails);
+        var $scripts = $('script'),
+            ids = [], regExp, matchPoint;
+
+        regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*)".*/;
+        matchPoint = 7;
+
+        $scripts.each(function() {
+            var script = $(this).text(),
+                lines = script.split('},');
+
+            $.each(lines, function() {
+                var match = this.match(regExp);
+                if (match && match[matchPoint].length == 11) {
+                    ids.push(match[matchPoint]);
+                }
+            });
+        });
+
+        return ids;
+    };
+
+    linkVideos   = parser('a', 'href');
+    iframeVideos = parser('iframe', 'src');
+    paramVideos  = parser('param', 'value');
+    thumbnails   = parser('img', 'src');
+    scriptVideos = scriptParser();
+
+    videos = _.union(linkVideos, iframeVideos, paramVideos, thumbnails, scriptVideos);
 
     return videos;
 }
