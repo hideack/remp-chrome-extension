@@ -1,0 +1,18 @@
+{
+    "strict"  : false,
+    "indent"  : 4,
+    "maxlen"  : 80,
+    "unused"  : true,
+    "undef"   : true,
+    "browser" : true,
+    "devel"   : true,
+    "debug"   : true,
+    "globals" : {
+        "_":      false,
+        "$":      false,
+        "jquery": false,
+        "chrome": false
+    },
+    "eqnull"  : true,
+    "expr"    : true
+}
