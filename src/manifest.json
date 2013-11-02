@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name":"REMP it",
   "description":"ブラウザに表示中のページ内にあるYouTube動画をREMPにプレイリストとして取り込みます。REMPのユーザ登録が必要です。",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "permissions": ["tabs" ,"http://*/"],
   "background": {
     "scripts": ["js/jquery-2.0.3.min.js", "js/background.js"]
