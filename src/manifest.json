@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "ページ内のYouTube動画をまとめて連続再生 - REMP it",
+  "name": "ページ内の動画をまとめて連続再生 - REMP it",
   "description": "表示しているページ内のYouTube動画を、REMP (動画プレイリスト作成/共有サービス) にまとめて取り込み連続再生できます。",
   "version": "0.3.0",
   "permissions": ["tabs" ,"http://*/"],
